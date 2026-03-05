@@ -228,6 +228,7 @@
             this.Controls.Add(this.txtHorasTrabajadas);
             this.Controls.Add(this.txtHorasTrabajadas1);
             this.Controls.Add(this.comboBoxEmpleados);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormNomina";
             this.Text = "FormNomina";
             this.Load += new System.EventHandler(this.FormNomina_Load);

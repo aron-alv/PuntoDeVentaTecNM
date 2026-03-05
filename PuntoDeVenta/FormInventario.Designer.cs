@@ -512,6 +512,7 @@
             this.Name = "FormInventario";
             this.Text = "FormInventario";
             this.Load += new System.EventHandler(this.FormInventario_Load);
+            this.Shown += new System.EventHandler(this.FormInventario_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.tablaInventario)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProductos)).EndInit();
             this.panel1.ResumeLayout(false);

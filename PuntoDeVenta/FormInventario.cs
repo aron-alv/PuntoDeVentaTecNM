@@ -24,51 +24,7 @@ namespace ABARROTES
 
         private void FormInventario_Load(object sender, System.EventArgs e)
         {
-            // Cargar proveedores en el ComboBox 
-            Dictionary<int, string> proveedores = Conexion.ObtenerProveedores();
-            if (proveedores.Count > 0)
-            {
-                comboBoxProveedores.DataSource = new BindingSource(proveedores, null);
-                comboBoxProveedores.DisplayMember = "Value";
-                comboBoxProveedores.ValueMember = "Key";
-            }
-            else
-            {
-
-            }
-
-            // Cargar productos en el ComboBox 
-            var productosIds = Conexion.ObtenerProductos().Keys.ToList(); // Obtener solo los IDs de productos
-            productos = new List<Tuple<int, string, decimal>>(); // Lista de tuplas para almacenar los productos
-
-
-            foreach (var id in productosIds)
-            {
-
-                if (Conexion.ObtenerProductoDetalle(id, out string nombre, out double precio))
-                {
-                    productos.Add(new Tuple<int, string, decimal>(id, nombre, (decimal)precio));
-                }
-            }
-
-
-            Dictionary<int, string> productosDiccionario = productos.ToDictionary(p => p.Item1, p => p.Item2);
-
-            if (productosDiccionario.Count > 0)
-            {
-                comboBoxProductos.DataSource = new BindingSource(productosDiccionario, null);
-                comboBoxProductos.DisplayMember = "Value";
-                comboBoxProductos.ValueMember = "Key";
-            }
-            else
-            {
-                MessageBox.Show("No se encontraron productos.");
-            }
-
-            // Cargar el inventario en la tabla
-            Conexion.BuscarInventarioEnTabla(tablaInventario);
-            comboBoxProveedores.SelectedIndex = -1;
-            comboBoxProveedores.Focus();
+            
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -319,6 +275,71 @@ namespace ABARROTES
         private void textBoxPrecio_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormInventario_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+
+            // 2. Ponemos el relojito
+            Cursor = Cursors.WaitCursor;
+
+            try
+            {// Cargar proveedores en el ComboBox 
+                Dictionary<int, string> proveedores = Conexion.ObtenerProveedores();
+                if (proveedores.Count > 0)
+                {
+                    comboBoxProveedores.DataSource = new BindingSource(proveedores, null);
+                    comboBoxProveedores.DisplayMember = "Value";
+                    comboBoxProveedores.ValueMember = "Key";
+                }
+                else
+                {
+
+                }
+
+                // Cargar productos en el ComboBox 
+                var productosIds = Conexion.ObtenerProductos().Keys.ToList(); // Obtener solo los IDs de productos
+                productos = new List<Tuple<int, string, decimal>>(); // Lista de tuplas para almacenar los productos
+
+
+                foreach (var id in productosIds)
+                {
+
+                    if (Conexion.ObtenerProductoDetalle(id, out string nombre, out double precio))
+                    {
+                        productos.Add(new Tuple<int, string, decimal>(id, nombre, (decimal)precio));
+                    }
+                }
+
+
+                Dictionary<int, string> productosDiccionario = productos.ToDictionary(p => p.Item1, p => p.Item2);
+
+                if (productosDiccionario.Count > 0)
+                {
+                    comboBoxProductos.DataSource = new BindingSource(productosDiccionario, null);
+                    comboBoxProductos.DisplayMember = "Value";
+                    comboBoxProductos.ValueMember = "Key";
+                }
+                else
+                {
+                    MessageBox.Show("No se encontraron productos.");
+                }
+
+                // Cargar el inventario en la tabla
+                Conexion.BuscarInventarioEnTabla(tablaInventario);
+                comboBoxProveedores.SelectedIndex = -1;
+                comboBoxProveedores.Focus();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+            finally
+            {
+                // 3. Regresamos el cursor a la normalidad (la flechita)
+                Cursor = Cursors.Default;
+            }
         }
     }
 }

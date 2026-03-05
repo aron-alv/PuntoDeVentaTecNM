@@ -36,6 +36,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.BtnEliminarEmpleado = new System.Windows.Forms.Button();
             this.dgvEmpleados = new System.Windows.Forms.DataGridView();
+            this.ID_Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UsuarioAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SueldoPorHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BtnAgregarEmpleado = new System.Windows.Forms.Button();
             this.txtNombreDeUsuario = new System.Windows.Forms.TextBox();
             this.txtNombreCompletodeUsuario = new System.Windows.Forms.TextBox();
@@ -43,11 +48,6 @@
             this.cbmRolEmpleado = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSueldoporHora = new System.Windows.Forms.TextBox();
-            this.ID_Empleado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NombreCompleto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UsuarioAD = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SueldoPorHora = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmpleados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -149,6 +149,47 @@
             this.dgvEmpleados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellClick);
             this.dgvEmpleados.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmpleados_CellContentClick);
             // 
+            // ID_Empleado
+            // 
+            this.ID_Empleado.HeaderText = "ID";
+            this.ID_Empleado.MinimumWidth = 6;
+            this.ID_Empleado.Name = "ID_Empleado";
+            this.ID_Empleado.ReadOnly = true;
+            this.ID_Empleado.Visible = false;
+            this.ID_Empleado.Width = 50;
+            // 
+            // NombreCompleto
+            // 
+            this.NombreCompleto.HeaderText = "Nombre";
+            this.NombreCompleto.MinimumWidth = 6;
+            this.NombreCompleto.Name = "NombreCompleto";
+            this.NombreCompleto.ReadOnly = true;
+            this.NombreCompleto.Width = 87;
+            // 
+            // Rol
+            // 
+            this.Rol.HeaderText = "Rol";
+            this.Rol.MinimumWidth = 6;
+            this.Rol.Name = "Rol";
+            this.Rol.ReadOnly = true;
+            this.Rol.Width = 58;
+            // 
+            // UsuarioAD
+            // 
+            this.UsuarioAD.HeaderText = "Usuario";
+            this.UsuarioAD.MinimumWidth = 6;
+            this.UsuarioAD.Name = "UsuarioAD";
+            this.UsuarioAD.ReadOnly = true;
+            this.UsuarioAD.Width = 86;
+            // 
+            // SueldoPorHora
+            // 
+            this.SueldoPorHora.HeaderText = "Sueldo Por Hora";
+            this.SueldoPorHora.MinimumWidth = 6;
+            this.SueldoPorHora.Name = "SueldoPorHora";
+            this.SueldoPorHora.ReadOnly = true;
+            this.SueldoPorHora.Width = 102;
+            // 
             // BtnAgregarEmpleado
             // 
             this.BtnAgregarEmpleado.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
@@ -242,47 +283,6 @@
             this.txtSueldoporHora.Size = new System.Drawing.Size(221, 54);
             this.txtSueldoporHora.TabIndex = 51;
             // 
-            // ID_Empleado
-            // 
-            this.ID_Empleado.HeaderText = "ID";
-            this.ID_Empleado.MinimumWidth = 6;
-            this.ID_Empleado.Name = "ID_Empleado";
-            this.ID_Empleado.ReadOnly = true;
-            this.ID_Empleado.Visible = false;
-            this.ID_Empleado.Width = 50;
-            // 
-            // NombreCompleto
-            // 
-            this.NombreCompleto.HeaderText = "Nombre";
-            this.NombreCompleto.MinimumWidth = 6;
-            this.NombreCompleto.Name = "NombreCompleto";
-            this.NombreCompleto.ReadOnly = true;
-            this.NombreCompleto.Width = 87;
-            // 
-            // Rol
-            // 
-            this.Rol.HeaderText = "Rol";
-            this.Rol.MinimumWidth = 6;
-            this.Rol.Name = "Rol";
-            this.Rol.ReadOnly = true;
-            this.Rol.Width = 58;
-            // 
-            // UsuarioAD
-            // 
-            this.UsuarioAD.HeaderText = "Usuario";
-            this.UsuarioAD.MinimumWidth = 6;
-            this.UsuarioAD.Name = "UsuarioAD";
-            this.UsuarioAD.ReadOnly = true;
-            this.UsuarioAD.Width = 86;
-            // 
-            // SueldoPorHora
-            // 
-            this.SueldoPorHora.HeaderText = "Sueldo Por Hora";
-            this.SueldoPorHora.MinimumWidth = 6;
-            this.SueldoPorHora.Name = "SueldoPorHora";
-            this.SueldoPorHora.ReadOnly = true;
-            this.SueldoPorHora.Width = 102;
-            // 
             // FormEmpleados
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -301,6 +301,7 @@
             this.Controls.Add(this.txtNombreDeUsuario);
             this.Controls.Add(this.txtNombreCompletodeUsuario);
             this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormEmpleados";
             this.Text = "FormEmpleados";
             this.Load += new System.EventHandler(this.FormEmpleados_Load);

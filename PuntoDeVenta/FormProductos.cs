@@ -83,7 +83,7 @@ namespace ABARROTES
                     MessageBox.Show("Favor de llenar todos los campos");
                     return;
                 }
-                int id = Convert.ToInt32(IDProducto.Text);
+             
                 string nombre = NombreProducto.Text;
                 double precio = Convert.ToDouble(PrecioProducto.Text);
                 string descripcion = DescripcionProducto.Text;
@@ -96,7 +96,7 @@ namespace ABARROTES
                 int idProveedor = selectedValue.Value;
                 try
                 {
-                    if (Conexion.AgregarProducto(id, nombre, precio, descripcion, idProveedor))
+                    if (Conexion.AgregarProducto( nombre, precio, descripcion, idProveedor))
                     {
                         MessageBox.Show("Producto agregado correctamente");
                         Conexion.BuscarProductosEnTabla(TablaProductos);

@@ -22,11 +22,9 @@ namespace PuntoDeVenta
         private void FormEmpleados_Load(object sender, EventArgs e)
         {
             Conexion.buscarTodosLosEmpleados(dgvEmpleados);
-            //deseleccionar la primera fila
-            if (dgvEmpleados.Rows.Count > 0)
-            {
-                dgvEmpleados.ClearSelection();
-            }
+            deseleccionarfila();
+
+
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -60,7 +58,7 @@ namespace PuntoDeVenta
                     Conexion.buscarTodosLosEmpleados(dgvEmpleados);
                     
                 }
-                bool resultado = Conexion.CrearEmpleado(nombre, usuario, rol, salario);
+             
 
 
             
@@ -72,11 +70,19 @@ namespace PuntoDeVenta
                 string rol = cbmRolEmpleado.SelectedItem.ToString();
                 decimal salario = Decimal.Parse(txtSueldoporHora.Text);
            
+                bool verificasiUsuarioExiste = Conexion.VerificarquenoexistaUsiarioAD(usuario);
+              if(verificasiUsuarioExiste != true)
+                {
+                    MessageBox.Show("El nombre de usuario ya existe, por favor elija otro");
+                    return;
+                }
+
                 bool resultado = Conexion.CrearEmpleado(nombre, usuario, rol, salario);
                 if (resultado)
                 {
                     MessageBox.Show("Empleado creado correctamente");
                     Conexion.buscarTodosLosEmpleados(dgvEmpleados); // Actualizar la tabla después de crear
+                    deseleccionarfila();
                 }
                 else
                 {
@@ -134,11 +140,21 @@ namespace PuntoDeVenta
         private void FormEmpleados_Click(object sender, EventArgs e)
         {
             limpiarCampos();
+            deseleccionarfila();
         }
 
         private void dgvEmpleados_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        public void deseleccionarfila()
+        {
+            //deseleccionar la primera fila
+            if (dgvEmpleados.Rows.Count > 0)
+            {
+                dgvEmpleados.ClearSelection();
+            }
         }
     }
 }

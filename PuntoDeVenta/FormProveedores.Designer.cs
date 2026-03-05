@@ -75,6 +75,7 @@
             this.IDProveedor.Name = "IDProveedor";
             this.IDProveedor.Size = new System.Drawing.Size(221, 61);
             this.IDProveedor.TabIndex = 9;
+            this.IDProveedor.Visible = false;
             // 
             // DireccionProveedor
             // 
@@ -82,7 +83,7 @@
             this.DireccionProveedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.DireccionProveedor.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DireccionProveedor.ForeColor = System.Drawing.Color.White;
-            this.DireccionProveedor.Location = new System.Drawing.Point(65, 466);
+            this.DireccionProveedor.Location = new System.Drawing.Point(65, 337);
             this.DireccionProveedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.DireccionProveedor.Multiline = true;
             this.DireccionProveedor.Name = "DireccionProveedor";
@@ -95,7 +96,7 @@
             this.NumTelefono.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NumTelefono.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NumTelefono.ForeColor = System.Drawing.Color.White;
-            this.NumTelefono.Location = new System.Drawing.Point(65, 343);
+            this.NumTelefono.Location = new System.Drawing.Point(65, 214);
             this.NumTelefono.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NumTelefono.Multiline = true;
             this.NumTelefono.Name = "NumTelefono";
@@ -108,7 +109,7 @@
             this.NombreProveedor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.NombreProveedor.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.NombreProveedor.ForeColor = System.Drawing.Color.White;
-            this.NombreProveedor.Location = new System.Drawing.Point(65, 230);
+            this.NombreProveedor.Location = new System.Drawing.Point(65, 101);
             this.NombreProveedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.NombreProveedor.Multiline = true;
             this.NombreProveedor.Name = "NombreProveedor";
@@ -246,13 +247,14 @@
             this.label8.Size = new System.Drawing.Size(29, 24);
             this.label8.TabIndex = 32;
             this.label8.Text = "ID";
+            this.label8.Visible = false;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(70, 204);
+            this.label2.Location = new System.Drawing.Point(70, 75);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(98, 24);
             this.label2.TabIndex = 33;
@@ -263,7 +265,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(70, 317);
+            this.label3.Location = new System.Drawing.Point(70, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(119, 24);
             this.label3.TabIndex = 34;
@@ -274,7 +276,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(70, 440);
+            this.label4.Location = new System.Drawing.Point(70, 311);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 24);
             this.label4.TabIndex = 35;
@@ -304,6 +306,7 @@
             this.Name = "FormProveedores";
             this.Text = "FormProveedores";
             this.Load += new System.EventHandler(this.FormProveedores_Load);
+            this.Shown += new System.EventHandler(this.FormProveedores_Shown);
             this.Click += new System.EventHandler(this.FormProveedores_Click);
             ((System.ComponentModel.ISupportInitialize)(this.TablaProveedores)).EndInit();
             this.ResumeLayout(false);

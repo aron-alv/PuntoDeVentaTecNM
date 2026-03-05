@@ -23,7 +23,7 @@ namespace PuntoDeVenta
 
             // string Server, string ModoAuth, string User, string Password, string Database
 
-            string Server = "192.168.1.5";
+            string Server = "msi";
             string User = "sa";
             string Password = "12345678";
             string Database = "AbarrotesBD";
@@ -67,8 +67,8 @@ namespace PuntoDeVenta
 
         public string ObtenerRolUsuarioAD(string usuarioAD)
         {
-            // ¡Agrega esto temporalmente!
-            MessageBox.Show("C# está buscando al usuario exacto: [" + usuarioAD + "]");
+          
+      
 
             string rol = "";
             try
@@ -225,6 +225,38 @@ namespace PuntoDeVenta
                 }
             }
         }
+
+
+        public bool VerificarquenoexistaUsiarioAD(string UsuarioAD)
+        {
+            try
+            {
+                string query = "SELECT COUNT(*) FROM Empleado WHERE UsuarioAD = @UsuarioAD";
+                if (connection.State == ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UsuarioAD", UsuarioAD);
+                    int count = (int)command.ExecuteScalar();
+                    return count == 0; // Retorna true si no existe el UsuarioAD, false si ya existe
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al verificar el UsuarioAD: " + ex.Message);
+                return false;
+            }
+            finally
+            {
+                if (connection.State == ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+        }
+
         public void ObtenerPagoDelClienteporHora(int ID_Empleado, System.Windows.Forms.TextBox txtPagoPorHora)
 
         {
@@ -416,13 +448,13 @@ namespace PuntoDeVenta
         //////ss                     PRODUCTOS                      /////////////
         //////s                                                      /
         /////////ss
-        public bool AgregarProducto(int ID_Producto, string Nombre, double Precio, string Descripcion, int ID_Proveedor)
+        public bool AgregarProducto(string Nombre, double Precio, string Descripcion, int ID_Proveedor)
         {
           
             try
             {
-                string query = "INSERT INTO Producto (ID_Producto, Nombre, Precio, Descripcion, ID_Proveedor) " +
-                    "VALUES (@ID_Producto, @Nombre, @Precio, @Descripcion, @ID_Proveedor)";
+                string query = "INSERT INTO Producto ( Nombre, Precio, Descripcion, ID_Proveedor) " +
+                    "VALUES ( @Nombre, @Precio, @Descripcion, @ID_Proveedor)";
                 if (connection.State == ConnectionState.Closed)
                 {
                     connection.Open();
@@ -430,7 +462,7 @@ namespace PuntoDeVenta
                 transaction = connection.BeginTransaction();
                 using (SqlCommand command = new SqlCommand(query, connection,transaction))
                 {
-                    command.Parameters.AddWithValue("@ID_Producto", ID_Producto);
+                  
                     command.Parameters.AddWithValue("@Nombre", Nombre);
                     command.Parameters.AddWithValue("@Precio", Precio);
                     command.Parameters.AddWithValue("@Descripcion", Descripcion);
@@ -848,7 +880,7 @@ namespace PuntoDeVenta
         //////ss                     PRVEEDORES                     /////////////
         //////s                                                      /
         /////////ss
-        public bool AgregarProveedor(int ID_Proveedor, string Nombre, string Telefono, string Direccion)
+        public bool AgregarProveedor( string Nombre, string Telefono, string Direccion)
         {
        
             try
@@ -857,12 +889,12 @@ namespace PuntoDeVenta
                 {
                     connection.Open();
                 }
-                string query = "INSERT INTO Proveedor (ID_Proveedor, Nombre, Telefono, Direccion) " +
-                    "VALUES (@ID_Proveedor, @Nombre, @Telefono, @Direccion)";
+                string query = "INSERT INTO Proveedor ( Nombre, Telefono, Direccion) " +
+                    "VALUES ( @Nombre, @Telefono, @Direccion)";
                 transaction = connection.BeginTransaction();
                 using (SqlCommand command = new SqlCommand(query, connection,transaction))
                 {
-                    command.Parameters.AddWithValue("@ID_Proveedor", ID_Proveedor);
+                   
                     command.Parameters.AddWithValue("@Nombre", Nombre);
                     command.Parameters.AddWithValue("@Telefono", Telefono);
                     command.Parameters.AddWithValue("@Direccion", Direccion);
@@ -1572,12 +1604,12 @@ namespace PuntoDeVenta
                     cmdDetalleVenta.Parameters.AddWithValue("@Subtotal", subtotal);
                     cmdDetalleVenta.ExecuteNonQuery();
 
-                    // Actualizar el stock de Saldos
-                    //string queryUpdateStock = "UPDATE Saldos SET Cantidad_Salida = Cantidad_Salida + @Cantidad WHERE ID_Producto = @ID_Producto";
-                    //SqlCommand cmdUpdateStock = new SqlCommand(queryUpdateStock, connection, transaction);
-                    //cmdUpdateStock.Parameters.AddWithValue("@Cantidad", cantidadVendida);
-                    //cmdUpdateStock.Parameters.AddWithValue("@ID_Producto", ID_Producto);
-                    //cmdUpdateStock.ExecuteNonQuery();
+            
+                    string queryUpdateStock = "UPDATE Saldos SET Cantidad_Salida = Cantidad_Salida + @Cantidad WHERE ID_Producto = @ID_Producto";
+                    SqlCommand cmdUpdateStock = new SqlCommand(queryUpdateStock, connection, transaction);
+                    cmdUpdateStock.Parameters.AddWithValue("@Cantidad", cantidadVendida);
+                    cmdUpdateStock.Parameters.AddWithValue("@ID_Producto", ID_Producto);
+                    cmdUpdateStock.ExecuteNonQuery();
                 }
 
 
@@ -1862,33 +1894,25 @@ namespace PuntoDeVenta
         }
 
 
-        public bool FiltrarVentas(DataGridView tablaVentas, DateTime? fechaInicio = null, DateTime? fechaFin = null, int? idCliente = null)
+        public bool FiltrarVentas(DataGridView tablaVentas, DateTime? fechaInicio = null, DateTime? fechaFin = null)
         {
             tablaVentas.Rows.Clear();
             try
             {
-                // consulta  con JOIN para obtener el nombre del cliente
                 StringBuilder queryBuilder = new StringBuilder(@"
-        SELECT v.ID_Venta, v.Fecha, v.Importe, v.IVA, v.Total, v.Metodo_Pago, 
-              c.Nombre AS Nombre_Cliente 
-        FROM Venta v
-        JOIN Cliente c ON v.ID_Cliente = c.ID_Cliente
-        WHERE 1=1;
-                    ");
+            SELECT ID_Venta, Fecha, Importe, IVA, Total, Metodo_Pago
+            FROM Venta
+            WHERE 1=1
+        ");
 
                 if (fechaInicio.HasValue)
                 {
-                    queryBuilder.Append(" AND v.Fecha >= @FechaInicio"); // fecha de inicio
+                    queryBuilder.Append(" AND Fecha >= @FechaInicio");
                 }
 
                 if (fechaFin.HasValue)
                 {
-                    queryBuilder.Append(" AND v.Fecha <= @FechaFin"); // fecha de fin
-                }
-
-                if (idCliente.HasValue)
-                {
-                    queryBuilder.Append(" AND v.ID_Cliente = @ID_Cliente"); //por ID del cliente
+                    queryBuilder.Append(" AND Fecha <= @FechaFin");
                 }
 
                 string query = queryBuilder.ToString();
@@ -1898,22 +1922,16 @@ namespace PuntoDeVenta
                     connection.Open();
                 }
 
-
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
                     if (fechaInicio.HasValue)
                     {
-                        command.Parameters.AddWithValue("@FechaInicio", fechaInicio.Value.Date); // fecha de inicio
+                        command.Parameters.AddWithValue("@FechaInicio", fechaInicio.Value.Date);
                     }
 
                     if (fechaFin.HasValue)
                     {
-                        command.Parameters.AddWithValue("@FechaFin", fechaFin.Value.Date); //  fecha de fin
-                    }
-
-                    if (idCliente.HasValue)
-                    {
-                        command.Parameters.AddWithValue("@ID_Cliente", idCliente.Value); // ID del cliente
+                        command.Parameters.AddWithValue("@FechaFin", fechaFin.Value.Date);
                     }
 
                     using (SqlDataReader reader = command.ExecuteReader())
@@ -1926,8 +1944,7 @@ namespace PuntoDeVenta
                                 reader["Importe"],
                                 reader["IVA"],
                                 reader["Total"],
-                                reader["Metodo_Pago"],
-                                reader["Nombre_Cliente"]
+                                reader["Metodo_Pago"]
                             );
                         }
                     }
@@ -1949,7 +1966,7 @@ namespace PuntoDeVenta
             }
         }
 
-     
+
         public bool BuscarInventarioEnTabla(DataGridView tablaInventario)
         {
             tablaInventario.Rows.Clear();

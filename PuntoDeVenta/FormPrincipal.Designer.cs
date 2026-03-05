@@ -66,10 +66,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel13 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
             this.BtnReportes = new System.Windows.Forms.Button();
-            this.BtnClientes = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.BtnProveedores = new System.Windows.Forms.Button();
@@ -82,6 +79,9 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.BtnProductos = new System.Windows.Forms.Button();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.BtnClientes = new System.Windows.Forms.Button();
             this.PanelContenedor = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel32.SuspendLayout();
@@ -97,11 +97,11 @@
             this.panel16.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel13.SuspendLayout();
-            this.panel11.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel11.SuspendLayout();
             this.PanelContenedor.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -112,11 +112,7 @@
             this.panel1.Controls.Add(this.panel32);
             this.panel1.Controls.Add(this.panel30);
             this.panel1.Controls.Add(this.BtnEmpleados);
-            this.panel1.Controls.Add(this.BtnCerrarSesion);
             this.panel1.Controls.Add(this.PanelMostrarReportes);
-            this.panel1.Controls.Add(this.labelUsuario);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.panel13);
             this.panel1.Controls.Add(this.BtnReportes);
             this.panel1.Controls.Add(this.panel9);
@@ -127,6 +123,10 @@
             this.panel1.Controls.Add(this.BtnVentas);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.BtnProductos);
+            this.panel1.Controls.Add(this.BtnCerrarSesion);
+            this.panel1.Controls.Add(this.labelUsuario);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -144,7 +144,7 @@
             this.BtnNomina.ForeColor = System.Drawing.Color.White;
             this.BtnNomina.Image = ((System.Drawing.Image)(resources.GetObject("BtnNomina.Image")));
             this.BtnNomina.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnNomina.Location = new System.Drawing.Point(17, 480);
+            this.BtnNomina.Location = new System.Drawing.Point(14, 292);
             this.BtnNomina.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnNomina.Name = "BtnNomina";
             this.BtnNomina.Size = new System.Drawing.Size(239, 53);
@@ -157,7 +157,7 @@
             // 
             this.panel32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel32.Controls.Add(this.panel33);
-            this.panel32.Location = new System.Drawing.Point(4, 480);
+            this.panel32.Location = new System.Drawing.Point(1, 292);
             this.panel32.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel32.Name = "panel32";
             this.panel32.Size = new System.Drawing.Size(11, 53);
@@ -176,7 +176,7 @@
             // 
             this.panel30.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel30.Controls.Add(this.panel31);
-            this.panel30.Location = new System.Drawing.Point(0, 423);
+            this.panel30.Location = new System.Drawing.Point(-3, 235);
             this.panel30.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel30.Name = "panel30";
             this.panel30.Size = new System.Drawing.Size(11, 53);
@@ -201,7 +201,7 @@
             this.BtnEmpleados.ForeColor = System.Drawing.Color.White;
             this.BtnEmpleados.Image = ((System.Drawing.Image)(resources.GetObject("BtnEmpleados.Image")));
             this.BtnEmpleados.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnEmpleados.Location = new System.Drawing.Point(9, 423);
+            this.BtnEmpleados.Location = new System.Drawing.Point(6, 235);
             this.BtnEmpleados.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnEmpleados.Name = "BtnEmpleados";
             this.BtnEmpleados.Size = new System.Drawing.Size(239, 53);
@@ -232,36 +232,33 @@
             // 
             // PanelMostrarReportes
             // 
-            this.PanelMostrarReportes.Controls.Add(this.panel28);
             this.PanelMostrarReportes.Controls.Add(this.panel26);
-            this.PanelMostrarReportes.Controls.Add(this.button4);
             this.PanelMostrarReportes.Controls.Add(this.panel2);
             this.PanelMostrarReportes.Controls.Add(this.panel22);
             this.PanelMostrarReportes.Controls.Add(this.button3);
-            this.PanelMostrarReportes.Controls.Add(this.panel24);
             this.PanelMostrarReportes.Controls.Add(this.button1);
-            this.PanelMostrarReportes.Controls.Add(this.button2);
             this.PanelMostrarReportes.Controls.Add(this.panel20);
             this.PanelMostrarReportes.Controls.Add(this.BtnReportesSaldos);
             this.PanelMostrarReportes.Controls.Add(this.panel18);
             this.PanelMostrarReportes.Controls.Add(this.panel16);
             this.PanelMostrarReportes.Controls.Add(this.BtnReportesInventario);
             this.PanelMostrarReportes.Controls.Add(this.BtnReportesVentas);
-            this.PanelMostrarReportes.Location = new System.Drawing.Point(29, 608);
+            this.PanelMostrarReportes.Location = new System.Drawing.Point(26, 420);
             this.PanelMostrarReportes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.PanelMostrarReportes.Name = "PanelMostrarReportes";
-            this.PanelMostrarReportes.Size = new System.Drawing.Size(217, 304);
+            this.PanelMostrarReportes.Size = new System.Drawing.Size(217, 337);
             this.PanelMostrarReportes.TabIndex = 13;
             // 
             // panel28
             // 
             this.panel28.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel28.Controls.Add(this.panel29);
-            this.panel28.Location = new System.Drawing.Point(2, 250);
+            this.panel28.Location = new System.Drawing.Point(786, 125);
             this.panel28.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel28.Name = "panel28";
             this.panel28.Size = new System.Drawing.Size(10, 53);
             this.panel28.TabIndex = 24;
+            this.panel28.Visible = false;
             // 
             // panel29
             // 
@@ -301,23 +298,24 @@
             this.button4.ForeColor = System.Drawing.Color.White;
             this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button4.Location = new System.Drawing.Point(11, 250);
+            this.button4.Location = new System.Drawing.Point(796, 125);
             this.button4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(180, 53);
             this.button4.TabIndex = 25;
             this.button4.Text = "   Graficas";
             this.button4.UseVisualStyleBackColor = false;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel2.Controls.Add(this.panel15);
-            this.panel2.Location = new System.Drawing.Point(3, 212);
+            this.panel2.Location = new System.Drawing.Point(3, 276);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(11, 34);
+            this.panel2.Size = new System.Drawing.Size(11, 59);
             this.panel2.TabIndex = 18;
             // 
             // panel15
@@ -333,10 +331,10 @@
             // 
             this.panel22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel22.Controls.Add(this.panel23);
-            this.panel22.Location = new System.Drawing.Point(3, 167);
+            this.panel22.Location = new System.Drawing.Point(3, 215);
             this.panel22.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(11, 39);
+            this.panel22.Size = new System.Drawing.Size(11, 44);
             this.panel22.TabIndex = 9;
             // 
             // panel23
@@ -358,10 +356,10 @@
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
             this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button3.Location = new System.Drawing.Point(12, 212);
+            this.button3.Location = new System.Drawing.Point(12, 276);
             this.button3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(179, 34);
+            this.button3.Size = new System.Drawing.Size(179, 59);
             this.button3.TabIndex = 19;
             this.button3.Text = "STOCK";
             this.button3.UseVisualStyleBackColor = false;
@@ -371,11 +369,12 @@
             // 
             this.panel24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel24.Controls.Add(this.panel25);
-            this.panel24.Location = new System.Drawing.Point(3, 126);
+            this.panel24.Location = new System.Drawing.Point(780, 78);
             this.panel24.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel24.Name = "panel24";
             this.panel24.Size = new System.Drawing.Size(11, 34);
             this.panel24.TabIndex = 22;
+            this.panel24.Visible = false;
             // 
             // panel25
             // 
@@ -396,10 +395,10 @@
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(12, 167);
+            this.button1.Location = new System.Drawing.Point(12, 215);
             this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(179, 39);
+            this.button1.Size = new System.Drawing.Size(179, 44);
             this.button1.TabIndex = 10;
             this.button1.Text = "     Proveedores";
             this.button1.UseVisualStyleBackColor = false;
@@ -415,23 +414,24 @@
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button2.Location = new System.Drawing.Point(12, 123);
+            this.button2.Location = new System.Drawing.Point(797, 74);
             this.button2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(179, 38);
             this.button2.TabIndex = 23;
             this.button2.Text = "Clientes";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // panel20
             // 
             this.panel20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel20.Controls.Add(this.panel21);
-            this.panel20.Location = new System.Drawing.Point(3, 85);
+            this.panel20.Location = new System.Drawing.Point(3, 154);
             this.panel20.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(11, 34);
+            this.panel20.Size = new System.Drawing.Size(11, 44);
             this.panel20.TabIndex = 16;
             // 
             // panel21
@@ -453,10 +453,10 @@
             this.BtnReportesSaldos.ForeColor = System.Drawing.Color.White;
             this.BtnReportesSaldos.Image = ((System.Drawing.Image)(resources.GetObject("BtnReportesSaldos.Image")));
             this.BtnReportesSaldos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnReportesSaldos.Location = new System.Drawing.Point(12, 85);
+            this.BtnReportesSaldos.Location = new System.Drawing.Point(12, 154);
             this.BtnReportesSaldos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnReportesSaldos.Name = "BtnReportesSaldos";
-            this.BtnReportesSaldos.Size = new System.Drawing.Size(179, 34);
+            this.BtnReportesSaldos.Size = new System.Drawing.Size(179, 44);
             this.BtnReportesSaldos.TabIndex = 17;
             this.BtnReportesSaldos.Text = "      Saldos";
             this.BtnReportesSaldos.UseVisualStyleBackColor = false;
@@ -466,10 +466,10 @@
             // 
             this.panel18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel18.Controls.Add(this.panel19);
-            this.panel18.Location = new System.Drawing.Point(3, 44);
+            this.panel18.Location = new System.Drawing.Point(3, 87);
             this.panel18.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(11, 34);
+            this.panel18.Size = new System.Drawing.Size(11, 49);
             this.panel18.TabIndex = 14;
             // 
             // panel19
@@ -488,7 +488,7 @@
             this.panel16.Location = new System.Drawing.Point(3, 2);
             this.panel16.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel16.Name = "panel16";
-            this.panel16.Size = new System.Drawing.Size(11, 34);
+            this.panel16.Size = new System.Drawing.Size(11, 50);
             this.panel16.TabIndex = 5;
             // 
             // panel17
@@ -510,10 +510,10 @@
             this.BtnReportesInventario.ForeColor = System.Drawing.Color.White;
             this.BtnReportesInventario.Image = ((System.Drawing.Image)(resources.GetObject("BtnReportesInventario.Image")));
             this.BtnReportesInventario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnReportesInventario.Location = new System.Drawing.Point(12, 44);
+            this.BtnReportesInventario.Location = new System.Drawing.Point(12, 87);
             this.BtnReportesInventario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnReportesInventario.Name = "BtnReportesInventario";
-            this.BtnReportesInventario.Size = new System.Drawing.Size(179, 34);
+            this.BtnReportesInventario.Size = new System.Drawing.Size(179, 49);
             this.BtnReportesInventario.TabIndex = 15;
             this.BtnReportesInventario.Text = "         Inventario";
             this.BtnReportesInventario.UseVisualStyleBackColor = false;
@@ -532,7 +532,7 @@
             this.BtnReportesVentas.Location = new System.Drawing.Point(20, 6);
             this.BtnReportesVentas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnReportesVentas.Name = "BtnReportesVentas";
-            this.BtnReportesVentas.Size = new System.Drawing.Size(179, 34);
+            this.BtnReportesVentas.Size = new System.Drawing.Size(179, 46);
             this.BtnReportesVentas.TabIndex = 6;
             this.BtnReportesVentas.Text = "         Ventas";
             this.BtnReportesVentas.UseVisualStyleBackColor = false;
@@ -548,6 +548,7 @@
             this.labelUsuario.Size = new System.Drawing.Size(78, 19);
             this.labelUsuario.TabIndex = 15;
             this.labelUsuario.Text = "NOMBRE";
+            this.labelUsuario.Visible = false;
             this.labelUsuario.Click += new System.EventHandler(this.labelUsuario_Click);
             // 
             // label1
@@ -560,6 +561,7 @@
             this.label1.Size = new System.Drawing.Size(125, 27);
             this.label1.TabIndex = 14;
             this.label1.Text = "USUARIO:";
+            this.label1.Visible = false;
             // 
             // pictureBox1
             // 
@@ -571,12 +573,13 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel13.Controls.Add(this.panel14);
-            this.panel13.Location = new System.Drawing.Point(-1, 551);
+            this.panel13.Location = new System.Drawing.Point(-4, 363);
             this.panel13.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel13.Name = "panel13";
             this.panel13.Size = new System.Drawing.Size(11, 53);
@@ -591,26 +594,6 @@
             this.panel14.Size = new System.Drawing.Size(11, 53);
             this.panel14.TabIndex = 3;
             // 
-            // panel11
-            // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.panel11.Controls.Add(this.panel12);
-            this.panel11.Location = new System.Drawing.Point(780, 11);
-            this.panel11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(11, 53);
-            this.panel11.TabIndex = 9;
-            this.panel11.Visible = false;
-            // 
-            // panel12
-            // 
-            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.panel12.Location = new System.Drawing.Point(-92, 0);
-            this.panel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(11, 53);
-            this.panel12.TabIndex = 3;
-            // 
             // BtnReportes
             // 
             this.BtnReportes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
@@ -621,7 +604,7 @@
             this.BtnReportes.ForeColor = System.Drawing.Color.White;
             this.BtnReportes.Image = ((System.Drawing.Image)(resources.GetObject("BtnReportes.Image")));
             this.BtnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnReportes.Location = new System.Drawing.Point(9, 551);
+            this.BtnReportes.Location = new System.Drawing.Point(6, 363);
             this.BtnReportes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnReportes.Name = "BtnReportes";
             this.BtnReportes.Size = new System.Drawing.Size(239, 53);
@@ -630,31 +613,11 @@
             this.BtnReportes.UseVisualStyleBackColor = false;
             this.BtnReportes.Click += new System.EventHandler(this.BtnReportes_Click);
             // 
-            // BtnClientes
-            // 
-            this.BtnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
-            this.BtnClientes.FlatAppearance.BorderSize = 0;
-            this.BtnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
-            this.BtnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnClientes.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BtnClientes.ForeColor = System.Drawing.Color.White;
-            this.BtnClientes.Image = ((System.Drawing.Image)(resources.GetObject("BtnClientes.Image")));
-            this.BtnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnClientes.Location = new System.Drawing.Point(797, 11);
-            this.BtnClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.BtnClientes.Name = "BtnClientes";
-            this.BtnClientes.Size = new System.Drawing.Size(239, 53);
-            this.BtnClientes.TabIndex = 10;
-            this.BtnClientes.Text = "     Clientes";
-            this.BtnClientes.UseVisualStyleBackColor = false;
-            this.BtnClientes.Visible = false;
-            this.BtnClientes.Click += new System.EventHandler(this.BtnClientes_Click);
-            // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel9.Controls.Add(this.panel10);
-            this.panel9.Location = new System.Drawing.Point(-1, 366);
+            this.panel9.Location = new System.Drawing.Point(-4, 178);
             this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(11, 53);
@@ -679,7 +642,7 @@
             this.BtnProveedores.ForeColor = System.Drawing.Color.White;
             this.BtnProveedores.Image = ((System.Drawing.Image)(resources.GetObject("BtnProveedores.Image")));
             this.BtnProveedores.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnProveedores.Location = new System.Drawing.Point(16, 366);
+            this.BtnProveedores.Location = new System.Drawing.Point(13, 178);
             this.BtnProveedores.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnProveedores.Name = "BtnProveedores";
             this.BtnProveedores.Size = new System.Drawing.Size(231, 53);
@@ -692,7 +655,7 @@
             // 
             this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel7.Controls.Add(this.panel8);
-            this.panel7.Location = new System.Drawing.Point(-1, 306);
+            this.panel7.Location = new System.Drawing.Point(-4, 118);
             this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(11, 53);
@@ -717,7 +680,7 @@
             this.BtnInventario.ForeColor = System.Drawing.Color.White;
             this.BtnInventario.Image = ((System.Drawing.Image)(resources.GetObject("BtnInventario.Image")));
             this.BtnInventario.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnInventario.Location = new System.Drawing.Point(8, 306);
+            this.BtnInventario.Location = new System.Drawing.Point(5, 118);
             this.BtnInventario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnInventario.Name = "BtnInventario";
             this.BtnInventario.Size = new System.Drawing.Size(239, 53);
@@ -730,7 +693,7 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel5.Controls.Add(this.panel6);
-            this.panel5.Location = new System.Drawing.Point(-1, 247);
+            this.panel5.Location = new System.Drawing.Point(-4, 59);
             this.panel5.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(11, 53);
@@ -755,7 +718,7 @@
             this.BtnVentas.ForeColor = System.Drawing.Color.White;
             this.BtnVentas.Image = ((System.Drawing.Image)(resources.GetObject("BtnVentas.Image")));
             this.BtnVentas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnVentas.Location = new System.Drawing.Point(8, 247);
+            this.BtnVentas.Location = new System.Drawing.Point(5, 59);
             this.BtnVentas.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnVentas.Name = "BtnVentas";
             this.BtnVentas.Size = new System.Drawing.Size(239, 53);
@@ -768,7 +731,7 @@
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
             this.panel3.Controls.Add(this.panel4);
-            this.panel3.Location = new System.Drawing.Point(-1, 188);
+            this.panel3.Location = new System.Drawing.Point(-4, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(11, 53);
@@ -793,7 +756,7 @@
             this.BtnProductos.ForeColor = System.Drawing.Color.White;
             this.BtnProductos.Image = ((System.Drawing.Image)(resources.GetObject("BtnProductos.Image")));
             this.BtnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.BtnProductos.Location = new System.Drawing.Point(8, 188);
+            this.BtnProductos.Location = new System.Drawing.Point(5, 0);
             this.BtnProductos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.BtnProductos.Name = "BtnProductos";
             this.BtnProductos.Size = new System.Drawing.Size(243, 53);
@@ -802,11 +765,55 @@
             this.BtnProductos.UseVisualStyleBackColor = false;
             this.BtnProductos.Click += new System.EventHandler(this.BtnProductos_Click);
             // 
+            // panel11
+            // 
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
+            this.panel11.Controls.Add(this.panel12);
+            this.panel11.Location = new System.Drawing.Point(780, 11);
+            this.panel11.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(11, 53);
+            this.panel11.TabIndex = 9;
+            this.panel11.Visible = false;
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
+            this.panel12.Location = new System.Drawing.Point(-92, 0);
+            this.panel12.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(11, 53);
+            this.panel12.TabIndex = 3;
+            // 
+            // BtnClientes
+            // 
+            this.BtnClientes.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(32)))), ((int)(((byte)(40)))));
+            this.BtnClientes.FlatAppearance.BorderSize = 0;
+            this.BtnClientes.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(80)))), ((int)(((byte)(200)))));
+            this.BtnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnClientes.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BtnClientes.ForeColor = System.Drawing.Color.White;
+            this.BtnClientes.Image = ((System.Drawing.Image)(resources.GetObject("BtnClientes.Image")));
+            this.BtnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.BtnClientes.Location = new System.Drawing.Point(797, 11);
+            this.BtnClientes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.BtnClientes.Name = "BtnClientes";
+            this.BtnClientes.Size = new System.Drawing.Size(239, 53);
+            this.BtnClientes.TabIndex = 10;
+            this.BtnClientes.Text = "     Clientes";
+            this.BtnClientes.UseVisualStyleBackColor = false;
+            this.BtnClientes.Visible = false;
+            this.BtnClientes.Click += new System.EventHandler(this.BtnClientes_Click);
+            // 
             // PanelContenedor
             // 
             this.PanelContenedor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(49)))), ((int)(((byte)(62)))), ((int)(((byte)(82)))));
+            this.PanelContenedor.Controls.Add(this.panel28);
             this.PanelContenedor.Controls.Add(this.BtnClientes);
             this.PanelContenedor.Controls.Add(this.panel11);
+            this.PanelContenedor.Controls.Add(this.button4);
+            this.PanelContenedor.Controls.Add(this.button2);
+            this.PanelContenedor.Controls.Add(this.panel24);
             this.PanelContenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelContenedor.Location = new System.Drawing.Point(251, 0);
             this.PanelContenedor.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -842,11 +849,11 @@
             this.panel16.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel13.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
             this.PanelContenedor.ResumeLayout(false);
             this.ResumeLayout(false);
 

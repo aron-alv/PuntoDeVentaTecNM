@@ -18,11 +18,15 @@ namespace ABARROTES
             InitializeComponent();
             Conexion = conexion;
             this.KeyPreview = true;
+            //maximiar la ventana al abrir
+            //this.WindowState = FormWindowState.Maximized;
+            //oculta la barra de tareas
+            //this.FormBorderStyle = FormBorderStyle.None;
 
         }
         private void CargarClientes()
         {
-            // funciON PARA  ObtenerClientes 
+          
             Dictionary<int, string> clientes = Conexion.ObtenerClientes();
 
 
@@ -54,34 +58,19 @@ namespace ABARROTES
                 comboBoxProductos.Focus();
                 return true;
             }
-            return base.ProcessCmdKey(ref msg, keyData);
+
+            //si aplasta F1 se cierra el turno
+            if (keyData == Keys.F1)
+            {
+                btnCerrarTurno_Click(this, new EventArgs());
+                return true;
+            }
+
+                return base.ProcessCmdKey(ref msg, keyData);
         }
         private void FormVentas_Load(object sender, EventArgs e)
         {
-            comboBoxProductos.Items.Clear();
-            int proximoIDVenta = Conexion.ObtenerProximoIDVenta();
-            txtIDVenta.Text = proximoIDVenta.ToString();
-
-
-            productos = new List<Tuple<int, string, decimal>>();
-            var productosIds = Conexion.ObtenerProductos().Keys;
-
-            foreach (var id in productosIds)
-            {
-                if (Conexion.ObtenerProductoDetalle(id, out string nombre, out double precio))
-                {
-                    productos.Add(new Tuple<int, string, decimal>(id, nombre, (decimal)precio));
-                    comboBoxProductos.Items.Add(new { Id = id, Nombre = nombre });
-                }
-            }
-            CbmMetododePago.SelectedIndex = 0;
-            comboBoxProductos.DisplayMember = "Nombre";
-            comboBoxProductos.ValueMember = "Id";
-            CargarClientes();
-          
-            comboBoxProductos.TabIndex = 1;
-            txtCantidad.TabIndex = 2;
-            tablaFolios.Visible = false;
+           
           
         }
 
@@ -309,6 +298,56 @@ namespace ABARROTES
                 e.Cancel = true; // ¡Bloqueamos el escape!
                 MessageBox.Show("Modo de seguridad Kiosco activo. Use el botón de 'Cerrar Turno' para salir.",
                                 "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
+
+        private void tablaFolios_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void FormVentas_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+
+            // 2. Ponemos el relojito
+            Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                comboBoxProductos.Items.Clear();
+                int proximoIDVenta = Conexion.ObtenerProximoIDVenta();
+                txtIDVenta.Text = proximoIDVenta.ToString();
+
+
+                productos = new List<Tuple<int, string, decimal>>();
+                var productosIds = Conexion.ObtenerProductos().Keys;
+
+                foreach (var id in productosIds)
+                {
+                    if (Conexion.ObtenerProductoDetalle(id, out string nombre, out double precio))
+                    {
+                        productos.Add(new Tuple<int, string, decimal>(id, nombre, (decimal)precio));
+                        comboBoxProductos.Items.Add(new { Id = id, Nombre = nombre });
+                    }
+                }
+                CbmMetododePago.SelectedIndex = 0;
+                comboBoxProductos.DisplayMember = "Nombre";
+                comboBoxProductos.ValueMember = "Id";
+                CargarClientes();
+
+                comboBoxProductos.TabIndex = 1;
+                txtCantidad.TabIndex = 2;
+                tablaFolios.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+            finally
+            {
+                // 3. Regresamos el cursor a la normalidad (la flechita)
+                Cursor = Cursors.Default;
             }
         }
     }

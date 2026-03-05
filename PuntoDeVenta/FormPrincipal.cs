@@ -1,15 +1,15 @@
-﻿
-using PuntoDeVenta;
+﻿using PuntoDeVenta;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
 using static ABARROTES.Form1;
+
 namespace ABARROTES
 {
     public partial class FormPrincipal : Form
     {
-
         private OperacionesBD Conexion = new OperacionesBD();
+
         public FormPrincipal(OperacionesBD conexion)
         {
             InitializeComponent();
@@ -19,39 +19,124 @@ namespace ABARROTES
             this.MinimumSize = new Size(this.Width, 745);
         }
 
-
         private void BtnReportes_Click(object sender, EventArgs e)
         {
-            if (PanelMostrarReportes.Visible == true)
-            {
-                PanelMostrarReportes.Visible = false;
-            }
-            else
-            {
-                PanelMostrarReportes.Visible = true;
-            }
-
+            // Este solo muestra/oculta el panel, no necesita escudo
+            PanelMostrarReportes.Visible = !PanelMostrarReportes.Visible;
         }
 
+        // ==========================================
+        // BOTONES DE REPORTES (Con Escudo Anti-Clics)
+        // ==========================================
         private void BtnReportesVentas_Click(object sender, EventArgs e)
         {
-
-            PanelMostrarReportes.Visible = false;
-            AbrirFormHija(new FormReporteVentas(Conexion));
+            BtnReportesVentas.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormReporteVentas(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnReportesVentas.Enabled = true; }
         }
+
         private void BtnReportesInventario_Click(object sender, EventArgs e)
         {
-            PanelMostrarReportes.Visible = false;
-            AbrirFormHija(new FormReporteInventario(Conexion));
+            BtnReportesInventario.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormReporteInventario(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnReportesInventario.Enabled = true; }
         }
 
         private void BtnReportesSaldos_Click(object sender, EventArgs e)
         {
-            PanelMostrarReportes.Visible = false;
-            AbrirFormHija(new FormReporteSaldos(Conexion));
+            BtnReportesSaldos.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormReporteSaldos(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnReportesSaldos.Enabled = true; }
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            button1.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormGenerarReportesDeProveedores(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; button1.Enabled = true; }
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            button2.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormGenerarReportesdeClientes(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; button2.Enabled = true; }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            button4.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new ReportesVistas(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; button4.Enabled = true; }
+        }
+
+        // ==========================================
+        // BOTONES PRINCIPALES (Con Escudo Anti-Clics)
+        // ==========================================
+        private void BtnProductos_Click(object sender, EventArgs e)
+        {
+            PanelMostrarReportes.Visible = false;
+            BtnProductos.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormProductos(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnProductos.Enabled = true; }
+        }
+
+        private void BtnVentas_Click(object sender, EventArgs e)
+        {
+            PanelMostrarReportes.Visible = false;
+            BtnVentas.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormVentas(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnVentas.Enabled = true; }
+        }
+
+        private void BtnInventario_Click(object sender, EventArgs e)
+        {
+            PanelMostrarReportes.Visible = false;
+            BtnInventario.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormInventario(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnInventario.Enabled = true; }
+        }
+
+        private void BtnProveedores_Click(object sender, EventArgs e)
+        {
+            PanelMostrarReportes.Visible = false;
+            BtnProveedores.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormProveedores(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnProveedores.Enabled = true; }
+        }
+
+        private void BtnClientes_Click(object sender, EventArgs e)
+        {
+            PanelMostrarReportes.Visible = false;
+            BtnClientes.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormClientes(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnClientes.Enabled = true; }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            button3.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormProductosYstock(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; button3.Enabled = true; }
+        }
+
+        private void BtnEmpleados_Click(object sender, EventArgs e)
+        {
+            BtnEmpleados.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormEmpleados(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnEmpleados.Enabled = true; }
+        }
+
+        private void BtnNomina_Click(object sender, EventArgs e)
+        {
+            BtnNomina.Enabled = false; Cursor.Current = Cursors.WaitCursor;
+            try { AbrirFormHija(new FormNomina(Conexion)); }
+            finally { Cursor.Current = Cursors.Default; BtnNomina.Enabled = true; }
+        }
+
+        // ==========================================
+        // MÉTODOS DEL SISTEMA
+        // ==========================================
         private void AbrirFormHija(object formHija)
         {
             if (this.PanelContenedor.Controls.Count > 0)
@@ -59,9 +144,7 @@ namespace ABARROTES
                 var control = this.PanelContenedor.Controls[0];
                 this.PanelContenedor.Controls.RemoveAt(0);
                 control.Dispose();
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-
+                // ¡Se borraron las dos líneas del GC aquí!
             }
             Form fh = formHija as Form;
             fh.TopLevel = false;
@@ -70,61 +153,9 @@ namespace ABARROTES
             this.PanelContenedor.Tag = fh;
             fh.Show();
         }
-        private void BtnProductos_Click(object sender, EventArgs e)
-        {
-            PanelMostrarReportes.Visible = false;
-            AbrirFormHija(new FormProductos(Conexion));
-        }
-
-        private void BtnVentas_Click(object sender, EventArgs e)
-        {
-            PanelMostrarReportes.Visible = false;
-            AbrirFormHija(new FormVentas(Conexion));
-        }
-
-        private void BtnInventario_Click(object sender, EventArgs e)
-        {
-            PanelMostrarReportes.Visible = false;
-            AbrirFormHija(new FormInventario(Conexion));
-        }
-
-        private void BtnProveedores_Click(object sender, EventArgs e)
-        {
-            PanelMostrarReportes.Visible = false;
-            AbrirFormHija(new FormProveedores(Conexion));
-        }
-
-        private void BtnClientes_Click(object sender, EventArgs e)
-        {
-            PanelMostrarReportes.Visible = false;
-            AbrirFormHija(new FormClientes(Conexion));
-        }
-
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            AbrirFormHija(new FormGenerarReportesDeProveedores(Conexion));
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            AbrirFormHija(new FormGenerarReportesdeClientes(Conexion));
-        }
-
-        private void PanelContenedor_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            AbrirFormHija(new FormProductosYstock(Conexion));
-        }
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            // Busca si ya hay una instancia de Form2 abierta
             foreach (Form form in Application.OpenForms)
             {
                 if (form is FormPrincipal && form != this)
@@ -138,7 +169,6 @@ namespace ABARROTES
         private void FormPrincipal_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-
         }
 
         private void BtnCerrarSesion_Click(object sender, EventArgs e)
@@ -147,38 +177,19 @@ namespace ABARROTES
             {
                 Application.Restart();
             }
-           
-
         }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
             {
                 BtnCerrarSesion_Click(this, new EventArgs());
-
                 return true;
             }
-
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        private void labelUsuario_Click(object sender, EventArgs e)
-        {
 
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-           AbrirFormHija(new ReportesVistas(Conexion));
-        }
-
-        private void BtnEmpleados_Click(object sender, EventArgs e)
-        {
-            AbrirFormHija(new FormEmpleados(Conexion));
-        }
-
-        private void BtnNomina_Click(object sender, EventArgs e)
-        {
-            AbrirFormHija(new FormNomina(Conexion));
-        }
+        private void PanelContenedor_Paint(object sender, PaintEventArgs e) { }
+        private void labelUsuario_Click(object sender, EventArgs e) { }
     }
 }

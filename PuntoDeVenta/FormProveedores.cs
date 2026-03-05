@@ -57,13 +57,13 @@ namespace ABARROTES
                     MessageBox.Show("Favor de llenar todos los campos");
                     return;
                 }
-                int id = int.Parse(IDProveedor.Text);
+               
                 string nombre = NombreProveedor.Text;
                 string telefono = NumTelefono.Text;
                 string direccion = DireccionProveedor.Text;
                 try
                 {
-                    if (Conexion.AgregarProveedor(id, nombre, telefono, direccion))
+                    if (Conexion.AgregarProveedor( nombre, telefono, direccion))
                     {
                         MessageBox.Show("Proveedor agregado correctamente");
                         Conexion.ObtenerProveedoresEnTabla(TablaProveedores);
@@ -86,8 +86,7 @@ namespace ABARROTES
 
         private void FormProveedores_Load(object sender, System.EventArgs e)
         {
-            Conexion.ObtenerProveedoresEnTabla(TablaProveedores);
-            TablaProveedores.ClearSelection();
+         
         }
 
         private void BtnEliminarProveedores_Click(object sender, System.EventArgs e)
@@ -173,6 +172,31 @@ namespace ABARROTES
                 txtBuscarProveedores.Text = "BUSCAR PROVEEDORES";
                 Conexion.ObtenerProveedoresEnTabla(TablaProveedores);
             }
+        }
+
+        private void FormProveedores_Shown(object sender, EventArgs e)
+        {
+
+            Application.DoEvents();
+
+            // 2. Ponemos el relojito
+            Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                Conexion.ObtenerProveedoresEnTabla(TablaProveedores);
+                TablaProveedores.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+            finally
+            {
+                // 3. Regresamos el cursor a la normalidad (la flechita)
+                Cursor = Cursors.Default;
+            }
+          
         }
     }
 }
