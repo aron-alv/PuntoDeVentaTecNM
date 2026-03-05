@@ -13,24 +13,11 @@ namespace ABARROTES
         {
             InitializeComponent();
             this.Conexion = Conexion;
+            this.DoubleBuffered = true;
         }
 
         private void FormProductos_Load(object sender, EventArgs e)
-        { // Llenar el ComboBox nadamas con los nombres de los proveedores
-            Dictionary<int, string> proveedores = Conexion.ObtenerProveedores();
-            if (proveedores.Count > 0)
-            {
-                IDProveedor.DataSource = new BindingSource(proveedores, null);
-                IDProveedor.DisplayMember = "Value";
-                IDProveedor.ValueMember = "Key";
-            }
-            else
-            {
-
-            }
-
-            Conexion.BuscarProductosEnTabla(TablaProductos);
-            TablaProductos.ClearSelection();
+        {
         }
 
       
@@ -220,6 +207,43 @@ namespace ABARROTES
         private void IDProveedor_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void FormProductos_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+
+            // 2. Ponemos el relojito
+            Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                // Llenar el ComboBox nadamas con los nombres de los proveedores
+                Dictionary<int, string> proveedores = Conexion.ObtenerProveedores();
+                if (proveedores.Count > 0)
+                {
+                    IDProveedor.DataSource = new BindingSource(proveedores, null);
+                    IDProveedor.DisplayMember = "Value";
+                    IDProveedor.ValueMember = "Key";
+                }
+                else
+                {
+
+                }
+
+                Conexion.BuscarProductosEnTabla(TablaProductos);
+                TablaProductos.ClearSelection();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar los datos: " + ex.Message);
+            }
+            finally
+            {
+                // 3. Regresamos el cursor a la normalidad (la flechita)
+                Cursor = Cursors.Default;
+            }
+          
         }
     }
 }

@@ -83,6 +83,8 @@ namespace ABARROTES
 
         private void BtnVentas_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("1. Di clic al botón");
+            BtnVentas.Enabled = false;
             PanelMostrarReportes.Visible = false;
             BtnVentas.Enabled = false; Cursor.Current = Cursors.WaitCursor;
             try { AbrirFormHija(new FormVentas(Conexion)); }

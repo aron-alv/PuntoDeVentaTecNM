@@ -19,7 +19,7 @@ namespace ABARROTES
             InitializeComponent();
             this.Conexion = Conexion;
 
-
+            this.DoubleBuffered = true;
         }
 
         private void FormInventario_Load(object sender, System.EventArgs e)

@@ -330,6 +330,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "FormProductos";
             this.Load += new System.EventHandler(this.FormProductos_Load);
+            this.Shown += new System.EventHandler(this.FormProductos_Shown);
             this.Click += new System.EventHandler(this.FormProductos_Click);
             this.Enter += new System.EventHandler(this.FormProductos_Enter);
             ((System.ComponentModel.ISupportInitialize)(this.TablaProductos)).EndInit();

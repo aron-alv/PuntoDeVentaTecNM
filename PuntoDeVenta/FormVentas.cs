@@ -15,13 +15,16 @@ namespace ABARROTES
         private bool turnoTerminado = false;
         public FormVentas(OperacionesBD conexion)
         {
+            MessageBox.Show("2. Entrando al Constructor");
             InitializeComponent();
+            MessageBox.Show("3. Terminé de dibujar los componentes ocultos");
             Conexion = conexion;
             this.KeyPreview = true;
             //maximiar la ventana al abrir
             //this.WindowState = FormWindowState.Maximized;
             //oculta la barra de tareas
             //this.FormBorderStyle = FormBorderStyle.None;
+            this.DoubleBuffered = true;
 
         }
         private void CargarClientes()
@@ -67,11 +70,6 @@ namespace ABARROTES
             }
 
                 return base.ProcessCmdKey(ref msg, keyData);
-        }
-        private void FormVentas_Load(object sender, EventArgs e)
-        {
-           
-          
         }
 
         private void BtnAgregarATabla_Click(object sender, EventArgs e)
@@ -308,6 +306,7 @@ namespace ABARROTES
 
         private void FormVentas_Shown(object sender, EventArgs e)
         {
+            MessageBox.Show("4. ¡La ventana ya es visible!");
             Application.DoEvents();
 
             // 2. Ponemos el relojito
@@ -349,6 +348,11 @@ namespace ABARROTES
                 // 3. Regresamos el cursor a la normalidad (la flechita)
                 Cursor = Cursors.Default;
             }
+        }
+
+        private void FormVentas_Load(object sender, EventArgs e)
+        {
+
         }
     }
 
