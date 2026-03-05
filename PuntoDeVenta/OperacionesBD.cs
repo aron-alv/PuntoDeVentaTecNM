@@ -2232,6 +2232,45 @@ namespace PuntoDeVenta
                 connection.Close();
             }
         }
-     
+        public List<Tuple<int, string, decimal>> ObtenerTodosLosProductosConPrecio()
+        {
+            List<Tuple<int, string, decimal>> listaProductos = new List<Tuple<int, string, decimal>>();
+            try
+            {
+                if (connection.State == System.Data.ConnectionState.Closed)
+                {
+                    connection.Open();
+                }
+
+                // Hacemos un solo SELECT para traernos TODO de un jalón
+                string query = "SELECT ID_Producto, Nombre, Precio FROM Producto";
+                using (System.Data.SqlClient.SqlCommand command = new System.Data.SqlClient.SqlCommand(query, connection))
+                {
+                    using (System.Data.SqlClient.SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int id = Convert.ToInt32(reader["ID_Producto"]);
+                            string nombre = reader["Nombre"].ToString();
+                            decimal precio = Convert.ToDecimal(reader["Precio"]);
+
+                            listaProductos.Add(new Tuple<int, string, decimal>(id, nombre, precio));
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar el catálogo de productos: " + ex.Message);
+            }
+            finally
+            {
+                if (connection.State == System.Data.ConnectionState.Open)
+                {
+                    connection.Close();
+                }
+            }
+            return listaProductos;
+        }
     }
 }

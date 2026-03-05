@@ -15,9 +15,9 @@ namespace ABARROTES
         private bool turnoTerminado = false;
         public FormVentas(OperacionesBD conexion)
         {
-            MessageBox.Show("2. Entrando al Constructor");
+        
             InitializeComponent();
-            MessageBox.Show("3. Terminé de dibujar los componentes ocultos");
+        
             Conexion = conexion;
             this.KeyPreview = true;
             //maximiar la ventana al abrir
@@ -306,10 +306,11 @@ namespace ABARROTES
 
         private void FormVentas_Shown(object sender, EventArgs e)
         {
-            MessageBox.Show("4. ¡La ventana ya es visible!");
+
+            // Obliga a pintar la ventana al instante
             Application.DoEvents();
 
-            // 2. Ponemos el relojito
+            // Ponemos el relojito
             Cursor = Cursors.WaitCursor;
 
             try
@@ -318,26 +319,31 @@ namespace ABARROTES
                 int proximoIDVenta = Conexion.ObtenerProximoIDVenta();
                 txtIDVenta.Text = proximoIDVenta.ToString();
 
+                // MAGIA PURA: 1 solo viaje a la base de datos para traer todo
+                productos = Conexion.ObtenerTodosLosProductosConPrecio();
 
-                productos = new List<Tuple<int, string, decimal>>();
-                var productosIds = Conexion.ObtenerProductos().Keys;
-
-                foreach (var id in productosIds)
+                // Llenamos el ComboBox rapidísimo con los datos que ya tenemos en memoria
+                foreach (var prod in productos)
                 {
-                    if (Conexion.ObtenerProductoDetalle(id, out string nombre, out double precio))
-                    {
-                        productos.Add(new Tuple<int, string, decimal>(id, nombre, (decimal)precio));
-                        comboBoxProductos.Items.Add(new { Id = id, Nombre = nombre });
-                    }
+                    comboBoxProductos.Items.Add(new { Id = prod.Item1, Nombre = prod.Item2 });
                 }
-                CbmMetododePago.SelectedIndex = 0;
+
+                // Prevenimos error si CbmMetododePago está vacío
+                if (CbmMetododePago.Items.Count > 0)
+                {
+                    CbmMetododePago.SelectedIndex = 0;
+                }
+
                 comboBoxProductos.DisplayMember = "Nombre";
                 comboBoxProductos.ValueMember = "Id";
+
                 CargarClientes();
 
                 comboBoxProductos.TabIndex = 1;
                 txtCantidad.TabIndex = 2;
                 tablaFolios.Visible = false;
+
+                
             }
             catch (Exception ex)
             {
@@ -345,7 +351,7 @@ namespace ABARROTES
             }
             finally
             {
-                // 3. Regresamos el cursor a la normalidad (la flechita)
+                // Regresamos el cursor a la normalidad
                 Cursor = Cursors.Default;
             }
         }

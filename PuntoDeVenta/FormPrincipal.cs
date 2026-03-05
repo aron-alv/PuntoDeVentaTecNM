@@ -9,7 +9,7 @@ namespace ABARROTES
     public partial class FormPrincipal : Form
     {
         private OperacionesBD Conexion = new OperacionesBD();
-
+        private bool turnoTerminado = false;
         public FormPrincipal(OperacionesBD conexion)
         {
             InitializeComponent();
@@ -83,7 +83,7 @@ namespace ABARROTES
 
         private void BtnVentas_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("1. Di clic al botón");
+         
             BtnVentas.Enabled = false;
             PanelMostrarReportes.Visible = false;
             BtnVentas.Enabled = false; Cursor.Current = Cursors.WaitCursor;
@@ -141,18 +141,26 @@ namespace ABARROTES
         // ==========================================
         private void AbrirFormHija(object formHija)
         {
-            if (this.PanelContenedor.Controls.Count > 0)
+            // 1. Destruimos TODOS los elementos (logos, labels, o ventanas viejas) 
+            // que estén adentro del panel, no solo el primero.
+            while (this.PanelContenedor.Controls.Count > 0)
             {
                 var control = this.PanelContenedor.Controls[0];
-                this.PanelContenedor.Controls.RemoveAt(0);
+                this.PanelContenedor.Controls.Remove(control);
                 control.Dispose();
-                // ¡Se borraron las dos líneas del GC aquí!
             }
+
+            // 2. Preparamos la nueva ventana
             Form fh = formHija as Form;
             fh.TopLevel = false;
             fh.Dock = DockStyle.Fill;
+
+            // 3. La agregamos al panel vacío
             this.PanelContenedor.Controls.Add(fh);
             this.PanelContenedor.Tag = fh;
+
+            // 4. TRUCO VISUAL: La mandamos hasta el frente por si las dudas
+            fh.BringToFront();
             fh.Show();
         }
 
@@ -175,9 +183,19 @@ namespace ABARROTES
 
         private void BtnCerrarSesion_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Desea cerrar sesión?", "Cerrar sesión", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            DialogResult respuesta = MessageBox.Show("¿Estás seguro que deseas cerrar tu turno?",
+                                             "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (respuesta == DialogResult.Yes)
             {
-                Application.Restart();
+                // 1. Activamos la llave maestra para que nuestro candado nos deje salir
+                turnoTerminado = true;
+
+                // 2. Le damos la orden a Windows de cerrar la sesión del usuario
+                System.Diagnostics.Process.Start("shutdown", "/l");
+
+                // 3. Cerramos nuestro programa
+                Application.Exit();
             }
         }
 
@@ -193,5 +211,15 @@ namespace ABARROTES
 
         private void PanelContenedor_Paint(object sender, PaintEventArgs e) { }
         private void labelUsuario_Click(object sender, EventArgs e) { }
+
+        private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing && turnoTerminado == false)
+            {
+                e.Cancel = true; // ¡Bloqueamos el escape!
+                MessageBox.Show("Modo de seguridad Kiosco activo. Use el botón de 'Cerrar Turno' para salir.",
+                                "Acceso Denegado", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+            }
+        }
     }
 }
